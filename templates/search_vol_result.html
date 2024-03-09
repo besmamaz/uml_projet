@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+   <title>Air Algerie Website</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A==" crossorigin="anonymous" referrerpolicy="no-referrer"
+   />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous"
+       referrerpolicy="no-referrer" />
+   <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+  <!--fontawsome-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  
+
+</head>
+
+<body class="body">
+   <header class="header" id="navigation-menu">
+       <div class="container">
+           <nav>
+               <a href="#" class="logo"><img src="{% static 'image/logo.png' %}" alt=""></a>
+
+
+               <ul class="nav-menu">
+                   <li> <a href="#home" class="nav-link">Home</a><i class="plane-icon"></i></a></li> </li>
+                   <li> <a href="#OurServices" class="nav-link">Our Services</a> </li>
+                   <li> <a href="#Reservation" class="nav-link">Reservation</a> </li>
+                   <li> <a href="#AirAlgerieMore" class="nav-link">Air Algerie More</a> </li>
+               </ul>
+           </nav>
+       </div>
+   </header>
+   
+   <div class="sectionrecherche">
+    <div class="h"> <i class="fa-solid fa-magnifying-glass" style="color:#ff0000 ;margin-right:5px;font-size:30px;"></i>Your search<i class="fa-solid fa-plane " style="color:#ff0000;margin-right:5px;margin-left:8px;font-size:15px; "></i><i class="fa-solid fa-plane "
+            style="color:#ff0000;margin-right:5px;font-size:15px; "></i>
+        <i class="fa-solid fa-plane " style="color:#ff0000;margin-right:5px;font-size:15px; "></i>
+    </div>
+
+    <div class="first_side">
+        <div class="date"><i class="fa-regular fa-calendar-days" style="color:#ff0000 ;margin-right:8px;font-size:25px;"></i>{{ checkInDate }} <i class="fa-regular fa-clock " style="color:#ff0000 ;margin-right:8px;margin-left:100px;font-size:25px;"></i>{{ departureHour }}</div>
+        <div class="h11 " style="margin-top:2%;">Algeria (ALG)<i class="fa-solid fa-plane " style="color:#ff0000;margin-right:5px;font-size:18px; "></i>{{ destination }} </div>
+    </div>
+    <div class="second_side ">
+        <div class="nombrepassager "><i class="fa-solid fa-users " style="color:#ff0000;margin-right:5px;font-size:26px; "></i>{{ passagers }} passager </div>
+        <div class="detailspassager ">{{ numberAdults }}Adult , {{ numberChildren }}child </div>
+    </div>
+
+</div>
+<div class="important">
+    <div>
+        <i class="fa-solid fa-circle-exclamation" style="color:#ff0000;font-size:20px;margin-right:8px;"></i> The prices are for all persons and taxes and for a class which you have chosen; if you want to specify a class for each passenger, you can
+        do that in the reservation stage
+    </div>
+</div>
+
+
+
+
+
+
+
+{% if flights %}
+<div class="billet ">
+    <div class="volresultsearch ">
+        {% for trajet, price ,arrival in trajets_prices_arrivals %}
+        <div class="ticket ">
+            <div class="ticket-firstside">
+               
+                <table>
+                    <tbody>
+                        <tr>
+                            <td> <img src="{% static 'image/logo.png' %}" alt=""></td>
+                            <td style="padding-left:10%;">{{ trajet.fk_idvol.date_vol|date:" d/m/Y" }}</td>
+                        </tr>
+                        <tr>
+
+                            <td style="padding-right: 40px;font-size: 26px; ">
+                                {{ trajet.fk_idvol.heure_depart }}<br>
+                                <p style="color:rgb(105, 105, 105);font-size: 18px; ">
+                                    Algeria<br> {{ trajet.ville_depart }}
+                                </p>
+                            </td>
+                            <td style="padding-right: 40px;font-size: 18px; ">
+                                {{ trajet.duree_trajet }}h
+                                <div class="plane-icon ">
+                                    
+                                    <i class="fa-solid fa-plane " style="color:#ff0000 "></i>
+                                </div>
+                                <p style="font-size: 17px; ">directly</p>
+                            </td>
+                            <td style="padding-right: 40px;font-size: 26px; ">
+                                {{ arrival }}<br>
+                                <p style="color:rgb(105, 105, 105);font-size: 18px; ">
+                                    {{ destination }}<br> {{ trajet.ville_arrive }}
+                                </p>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="ticket-secondside ">
+                <div class="price " style="padding-top:20%; ">
+                    {{ price }}DZ
+                </div>
+                <div class="classs " style="font-size:17px;margin-top: 5%; ">
+                    {{ class }}
+                </div>
+
+                <form action=" " method="GET ">
+                    <input type="hidden" name="billetId " value="{{ trajet.fk_idvol.date_vol }}">
+                    
+                    <input type="hidden" name="checkIn" value="">
+                    
+                    <input type="hidden" name="classs" value="{{ class }}">
+                    <input type="hidden" name="totalprice" value="">
+                    <input type="submit" class="btnn" value="Book Now" style="margin-top: 15%;">
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+
+{% else %}
+        <p>No flights available for the selected criteria.</p>
+    {% endif %}
+
+
+
+   <!--<section class="ticha">
+    {% if flights %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Destination</th>
+                    <th>Duree</th>
+                    <th>Time</th>
+                    <th>Price (Economique)</th>
+                    <th>Price (Affaire)</th>
+                    <th>Price (1er Classe)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for trajet in trajets %}
+        <tr>
+            <td>{{ trajet.fk_idvol.date_vol }}</td>
+            <td>{{ trajet.ville_arrive }}</td>
+            <td>{{ trajet.duree_trajet }}</td>
+            <td>{{ trajet.fk_idvol.heure_depart }}</td>
+            <td>{{ trajet.prix_trajet_economique }}</td>
+            <td>{{ trajet.prix_trajet_affaire }}</td>
+            <td>{{ trajet.prix_trajet_1er_classe }}</td>
+        </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No flights available for the selected criteria.</p>
+    {% endif %}
+</section>-->
+
+<div class="tsawrmdwrinright">
+    <table>
+        <tbody>
+            <tr>
+                <div class="wrapperr"><img src="{% static 'image/imagesalg.png' %} "></div>
+            </tr>
+            <tr>
+                <div class="wrapperr"><img src="{% static 'image/imagesair.png' %} "></div>
+            </tr>
+
+            <tr>
+                <div class="wrapperr"><img src="{% static 'image/imagess.jpg' %}"></div>
+            </tr>
+
+
+        </tbody>
+    </table>
+</div>
+
+
+   <section class="imagebeforfooter">
+       <div class="image">
+           <img src="{% static 'image/image.png' %} ">
+       </div>
+   </section>
+   <footer>
+       <div class="container grid top ">
+           <div class="box ">
+               <img src="https://img.icons8.com/external-flatart-icons-flat-flatarticons/48/000000/external-hotel-hotel-services-and-city-elements-flatart-icons-flat-flatarticons-1.png " />
+               <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+               <p>Accepted payment methods</p>
+               <div class="payment grid ">
+                   <img src="https://img.icons8.com/color/48/000000/visa.png " />
+                   <img src="https://img.icons8.com/color/48/000000/mastercard.png " />
+                   <img src="https://img.icons8.com/color-glass/48/000000/paypal.png " />
+                   <img src="https://img.icons8.com/fluency/48/000000/amex.png " />
+               </div>
+           </div>
+
+           <div class="box ">
+               <h3>Our structure</h3>
+
+               <ul>
+                   <li> <a href="#home" style="color: black;">Home</a> </li>
+                   <li> <a href="#OurServices" style="color: black;">Our Services</a> </li>
+                   <li> <a href="#Reservation" style="color: black;">Reservation</a> </li>
+                   <li> <a href="#AirAlgerieMore" style="color: black;">Air Algerie More</a> </li>
+               </ul>
+           </div>
+
+           <div class="box ">
+               <h3>About</h3>
+               <ul>
+                   <li>Capital social de 60.000.000.000 DZD</li>
+                   <li>Numéro RC 00B0091100</li>
+                   <li> Identifiant Fiscal 00001600.1190.089s</li>
+                   <li> 1 PLACE MAURICE AUDIN ALGER</li>
+                   <li>RCS Paris n°775 756 729,18 avenue de l’Opéra 75001 PARIS</li>
+               </ul>
+           </div>
+
+           <div class="box ">
+               <h3>Contact Us</h3>
+
+               <ul>
+                   <li>Support vente internet : helpdesk@airalgerie.dz.</li>
+                   <li><i class="far fa-envelope "></i>Airalgerie@gmail.com </li>
+                   <li><i class="far fa-phone-alt "></i>+213 21 98 63 63 </li>
+                   <li><i class="far fa-phone-alt "></i>+33 1 76 54 40 00 </li>
+                   <li><i class="far fa-phone-alt "></i>+41 21 530 94 83</li>
+               </ul>
+           </div>
+
+   </footer>
+   </div>
+   </section>
+</body>
+
+</html>

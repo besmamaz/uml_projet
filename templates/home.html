@@ -1,0 +1,257 @@
+ {% load static %}
+ <!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <title>Air Algerie Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" integrity="sha512-UTNP5BXLIptsaj5WdKFrkFov94lDx+eBvbKyoe1YAfjeRPC+gT5kyZ10kOHCfNZqEui1sxmqvodNUx3KbuYI/A==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <header class="header" id="navigation-menu">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo"><img src="{% static 'image/logo.png' %}" alt=""></a>
+
+
+                <ul class="nav-menu">
+                    <li> <a href="#home" class="nav-link">Home</a> </li>
+                    <li> <a href="#OurServices" class="nav-link">Our Services</a> </li>
+                    <li> <a href="#Reservation" class="nav-link">Reservation</a> </li>
+                    <li> <a href="#footer" class="nav-link">Air Algerie More</a> </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="home" id="home">
+       
+        <div class="head_container">
+            <div class="texthome">
+                <div class="welcome">Welcome <br>To Our<br> Agency</div>
+                <div class="trip">Organize Your Trip With Us</div>
+            </div>
+        </div>
+    </section>
+   
+   
+    <section class="book"id="Reservation">
+        <form method="post" action="{% url 'search_vol' %}">
+            {% csrf_token %}
+        <div class="container flex">
+            
+            <div class="input gridd">
+                <div class="box">
+                    <label>Check-in:</label>
+                    <input type="date" name="checkInDate" placeholder="Check-in-Date">
+                    <div class="box" id="departureInfo">
+                        <label>departure Airport:</label>
+                        <h1 style="color:red;padding-top: 6%;">Algeria(ALG)
+                        </h1>
+                    </div>
+
+                </div>
+                <div class="box">
+                    <label>Departure Hour:</label>
+                    <input type="time" name="DepartureHour" placeholder="Departure Hour">
+                    <div class="box">
+                        <label>Arrival Airport:</label>
+<select name="destination">
+    {% for trajet in trajets %}
+        <option>{{ trajet.ville_arrive }}</option>
+    {% endfor %}
+</select>
+
+                    </div>
+                </div>
+                <div class="box">
+                    <label>Adults(>12):</label> <br>
+                    <input type="number" name="numberadults" placeholder="0">
+                </div>
+                <div class="box">
+                    <label>Children(<12):</label> <br>
+                    <input type="number"name="numberchildren" placeholder="0">
+                    <div class="box">
+                        <label>Class:</label>
+                        <select name="class">
+                            <option>Business class</option>
+                            <option>first class</option>
+                            <option>Economic class</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="search">
+                <input type="submit" value="SEARCH">
+            </div>
+       
+            
+       
+        </div>
+        <script>
+            var currentDate = new Date();
+            var cruiseCheckInDateInput = document.getElementById("checkInDate");
+            cruiseCheckInDateInput.min = formatDate(currentDate);
+           
+    
+            function formatDate(date) {
+                var year = date.getFullYear();
+                var month = ("0" + (date.getMonth() + 1)).slice(-2);
+                var day = ("0" + date.getDate()).slice(-2);
+                return year + "-" + month + "-" + day;
+            }
+        </script>
+        
+    </form>
+    
+    </section>
+
+    <section class="ourservice" id="OurServices">
+        <div class="container flex">
+            <div class="ourservicestitle">
+                <div class="title">
+                    <h1>Our Services </h1>
+                    <h4>Air Algérie provides you with all the necessary help and assistance whatever your needs.</h4>
+
+                </div>
+                <div class="image">
+                    <img src="{% static 'image/serviceimage1.png' %}">
+                </div>
+                <div class="cards">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{% static 'image/siege.webp' %}  " class="card-img-top " alt="... ">
+                        <div class="card-body ">
+                            <h2 style="color: red;">Seat Service </h2>
+                            <p class="card-text "> You can reserve your seat according to your preferences from the cabin map since your reservation and up to 24 hours before the flight, but in order to have a wide choice, it is preferable to make your selection in advance.
+                                You can change your choice at any time. This service is offered free of charge on all flights. For reasons and the safety of our passengers on board, vulnerable people such as senior passengers or unaccompanied children
+                                cannot be placed in front of the emergency exits.
+                            </p>
+                            <li style="color: #fff;">Based on raw vegetables</li>
+                            <li style="color: #fff;">Hindu Menu & Gluten-free menu</li>
+                            <li style="color: #fff;">Menu for Diabetics & Low Cholesterol Menu</li>
+                            <li style="color: #fff;">Fruit plate</li>
+
+                        </div>
+                    </div>
+                    <div class="card " style="width: 18rem;">
+                        <img src="{% static 'image/servicerepas.jpg' %} " class="card-img-top " alt="... ">
+                        <div class="card-body ">
+                            <h2 style="color: red;">Meal Service </h2>
+                            <p class="card-text ">We respect your dietary, religious, medical preferences or simply your gastronomic habits by offering you a range of balanced, diversified and quality menus, prepared with fresh, premium products.</p>
+                            <ul>
+                                <li>Vegetarian Menu</li>
+                                <li>Asian Vegetarian Menu</li>
+                                <li>Baby menu (up to 2 years old)</li>
+                                <li>Children's menu (from 2 to 10 years old)</li>
+                                <li>Low in Calories & Low in protein</li>
+                                <li>Low salt and no salt added</li>
+                                <li>Based on raw vegetables</li>
+                                <li>Hindu Menu & Gluten-free menu</li>
+                                <li>Menu for Diabetics & Low Cholesterol Menu</li>
+                                <li>Fruit plate</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="card " style="width: 18rem;">
+                        <img src="{% static 'image/servicemerhaba.webp' %}  " class="card-img-top " alt="... ">
+                        <div class="card-body ">
+                            <h2 style="color: red;">Merhaba Service </h2>
+                            <p class="card-text ">Our “Marhaba” service provides any assistance required to simplify and facilitate the journey of our passengers with special needs, whether they are:</p>
+                            <ul>
+                                <li>Unaccompanied minors
+                                </li>
+                                <li>Pregnant women</li>
+                                <li>Passengers traveling with babies</li>
+                                <li>Sick passengers</li>
+                                <li>Passengers with reduced mobility</li>
+                                <li>Passengers who are visually or hearing impaired</li>
+                                <li>Passengers requiring additional seats</li>
+                                <li>Passengers requiring care during travel</li>
+                                <li>Passengers on stretchers</li>
+                                <li style="color: #fff;">Passengers on stretchers</li>
+                                <li style="color: #fff;">Passengers on stretchers</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+        </div>
+    </section>
+
+    <section class="imagebeforfooter">
+        <div class="image">
+            <img src="{% static 'image/image.png' %} ">
+        </div>
+    </section>
+    <footer id="footer">
+        <div class="container grid top ">
+            <div class="box ">
+                <img src="https://img.icons8.com/external-flatart-icons-flat-flatarticons/48/000000/external-hotel-hotel-services-and-city-elements-flatart-icons-flat-flatarticons-1.png " />
+                <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                <p>Accepted payment methods</p>
+                <div class="payment grid ">
+                    <img src="https://img.icons8.com/color/48/000000/visa.png " />
+                    <img src="https://img.icons8.com/color/48/000000/mastercard.png " />
+                    <img src="https://img.icons8.com/color-glass/48/000000/paypal.png " />
+                    <img src="https://img.icons8.com/fluency/48/000000/amex.png " />
+                </div>
+            </div>
+
+            <div class="box ">
+                <h3>Our structure</h3>
+
+                <ul>
+                    <li> <a href="#home" style="color: black;">Home</a> </li>
+                    <li> <a href="#OurServices" style="color: black;">Our Services</a> </li>
+                    <li> <a href="#Reservation" style="color: black;">Reservation</a> </li>
+                    <li> <a href="#AirAlgerieMore" style="color: black;">Air Algerie More</a> </li>
+                </ul>
+            </div>
+
+            <div class="box ">
+                <h3>About</h3>
+                <ul>
+                    <li>Capital social de 60.000.000.000 DZD</li>
+                    <li>Numéro RC 00B0091100</li>
+                    <li> Identifiant Fiscal 00001600.1190.089s</li>
+                    <li> 1 PLACE MAURICE AUDIN ALGER</li>
+                    <li>RCS Paris n°775 756 729,18 avenue de l’Opéra 75001 PARIS</li>
+                </ul>
+            </div>
+
+            <div class="box ">
+                <h3>Contact Us</h3>
+
+                <ul>
+                    <li>Support vente internet : helpdesk@airalgerie.dz.</li>
+                    <li><i class="far fa-envelope "></i>Airalgerie@gmail.com </li>
+                    <li><i class="far fa-phone-alt "></i>+213 21 98 63 63 </li>
+                    <li><i class="far fa-phone-alt "></i>+33 1 76 54 40 00 </li>
+                    <li><i class="far fa-phone-alt "></i>+41 21 530 94 83</li>
+                </ul>
+            </div>
+
+    </footer>
+    </div>
+    </section>
+</body>
+
+</html>
